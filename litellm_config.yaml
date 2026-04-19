@@ -2,4 +2,8 @@ model_list:
   - model_name: platform-default-model
     litellm_params:
       model: gpt-3.5-turbo
-      api_key: "os.environ/OPENAI_API_KEY" # To be managed by platform secrets
+      api_key: "os.environ/OPENAI_API_KEY"
+
+# TRACK 2: Enable OpenTelemetry to correlate gateway spans with agent traces
+litellm_settings:
+  callbacks: ["otel"]
