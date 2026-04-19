@@ -1,0 +1,5 @@
+model_list:
+  - model_name: platform-default-model
+    litellm_params:
+      model: gpt-3.5-turbo
+      api_key: "os.environ/OPENAI_API_KEY" # To be managed by platform secrets
