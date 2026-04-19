@@ -405,7 +405,7 @@ services:
       - agents-net
     command: ["python", "-u", "/app/orchestrator/redis_stream_listener.py"]
 
-  # ============================================================================
+# ============================================================================
   # LITELLM GATEWAY LAYER (Track 2 Integration)
   # ============================================================================
   litellm-gateway:
@@ -414,6 +414,9 @@ services:
     environment:
       - LITELLM_MASTER_KEY=sk-nasiko-local-dev-key
       - STORE_MODEL_IN_DB=True
+      # TRACK 2: Send gateway traces to the local Phoenix instance
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://phoenix-observability:4318
+      - OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
     ports:
       - "4001:4000"
     command: [ "--port", "4000", "--config", "/app/config.yaml" ]
